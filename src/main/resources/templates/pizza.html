@@ -1,0 +1,31 @@
+<html lang="it">
+
+  <head>
+    <th:block th:replace="fragments :: src-head"></th:block>
+	<title></title>
+  </head>
+  
+  <body>
+	  <div class="container" th:if="${#lists.isEmpty(pizzaList)}">
+	  	<h1>Lista non disponibile, riprovare più tardi</h1>
+	  </div>
+	  <div class="container col-9" th:unless="${#lists.isEmpty(pizzaList)}">
+	        <table class="table my-3">
+	          <thead>
+	            <tr>
+	              <th>Nome</th>
+	              <th>Prezzo</th>
+	              <th>Descrizione</th>
+	            </tr>
+	          </thead>
+	          <tbody>
+	            <tr class="align-middle" th:each="p : ${pizzaList}">
+	              <td th:text="${p.nome}"></td>
+	              <td th:text="${p.prezzo}"></td>
+	              <td th:text="${p.descrizione}"></td>
+	            </tr>
+	          </tbody>
+	        </table>
+	  </div>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+INSERT INTO pizza (id, descrizione, nome, prezzo) VALUES ('1', 'pomodoro e mozzarella', 'margherita', '5.99');
