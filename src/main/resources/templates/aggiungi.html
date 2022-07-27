@@ -1,0 +1,85 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	
+		<th:block th:replace="fragments :: src-head"></th>
+		
+		<title>Crea la tua Pizza</title>
+		
+	</head>
+	
+	<body>
+	
+		<main>
+			
+			
+			<nav th:replace="fragments :: navbar('menu')"></nav>
+			
+			<div class="container-fluid">
+			
+				<div class="col-12">
+			
+					<h1>Crea la tua Pizza</h1>
+					<hr>
+					
+					<form id="form-pizza" th:object="${pizza}" th:action="@{/pizza/salva}" method="POST">
+					
+						<div class="mb-3">
+						
+							<label class="form-label" for="nome">Nome pizza</label>
+							<input type="text" id="nome" class="form-control" th:field="*{nome}" th:errorClass="is-invalid">
+							
+							<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+			  					
+			  					<ul>
+			  						
+			  						<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
+			  					
+			  					</ul>
+			  					
+	  						</div>
+												
+						</div>
+						
+						<div class="mb-3">
+						
+							<label class="form-label" for="prezzo">Prezzo</label>
+							<input type="number" id="prezzo" class="form-control" th:field="*{prezzo}" th:errorClass="is-invalid">
+						
+							<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
+			  					
+			  					<ul>
+			  						
+			  						<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}">
+			  					
+			  					</ul>
+			  					
+	  						</div>
+						
+						</div>
+					
+						<div class="mb-3">
+						
+							<label class="form-label" for="descrizione">Descrizione</label>
+							<input type="text" id="descrizione" class="form-control" th:field="*{descrizione}">
+													
+						</div>
+						
+						<div class="mb-3">
+						
+							<button type="submit" class="btn btn-primary">Salva</button>
+							<a class="btn btn-danger" href="/pizza">Annulla</a>
+							
+						</div>
+						
+					</form>
+					
+				</div>
+				
+			</div>
+			
+		</main>
+	
+	</body>
+	
+</html>

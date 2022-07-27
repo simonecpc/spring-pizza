@@ -6,9 +6,8 @@
   </head>
   
   <body>
-	  <div class="container" th:if="${#lists.isEmpty(pizzaList)}">
-	  	<h1>Lista non disponibile, riprovare più tardi</h1>
-	  </div>
+  	
+  	  <nav th:replace="fragments :: navbar('menu')"></nav>
 	  <div class="container col-9" th:unless="${#lists.isEmpty(pizzaList)}">
 	        <table class="table my-3">
 	          <thead>
@@ -16,6 +15,7 @@
 	              <th>Nome</th>
 	              <th>Prezzo</th>
 	              <th>Descrizione</th>
+	              <th><a class="btn btn-success my-2" th:href="@{/pizza/aggiungi}"><i class="fa-solid fa-plus"></i></a></th>
 	            </tr>
 	          </thead>
 	          <tbody>
@@ -23,9 +23,28 @@
 	              <td th:text="${p.nome}"></td>
 	              <td th:text="${p.prezzo}"></td>
 	              <td th:text="${p.descrizione}"></td>
+	              <td>		
+					<a class="btn btn-primary my-2" th:href="@{|/pizza/modifica/${p.id}|}"><i class="fa-solid fa-pen-to-square"></i></a>
+					<a class="btn btn-danger my-2" th:href="@{|/pizza/elimina/${p.id}|}"><i class="fa-solid fa-trash-can"></i></a>	
+				  </td>	
 	            </tr>
 	          </tbody>
 	        </table>
 	  </div>
+	  	<div class="container col-9" th:if="${#lists.isEmpty(pizzaList)}">
+		  	<table class="table my-3">
+				<thead>
+					<tr>
+						<td>Nome</td>
+						<td>Prezzo</td>
+						<td>Descrizione</td>
+						<td><a class"btn btn-success my-2" th:href="@{/pizza/aggiungi}"><i class="fa-solid fa-plus"></i></a></td>		
+					</tr>
+				</thead>								
+			</table>	
+			<div  class="alert alert-info">
+				<h3>Non ci sono pizze disponibili nel menu</h3>	
+			</div>	
+	  	</div>
   </body>
 </html>
